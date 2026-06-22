@@ -209,7 +209,3 @@ Create an executable JAR with:
 ./mvnw clean package
 java -jar target/Library-0.0.1-SNAPSHOT.jar
 ```
-
-## License
-
-No license has been added yet. Add a `LICENSE` file before distributing or accepting external contributions.
