@@ -49,4 +49,10 @@ public class BookController {
     public void updateBook(@PathVariable Integer id,@RequestBody Book book){
         bookService.updateBook(id,book);
     }
+
+    @GetMapping("/genre/{id}")
+    public List<Book> getBookByGenre(@PathVariable Integer id){
+        return bookService.getBookByGenre(id);
+    }
+
 }

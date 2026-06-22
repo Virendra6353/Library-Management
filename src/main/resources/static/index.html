@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Library Admin</h2>
+                <p>Central Management</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" onclick="showPage('dashboard')">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showPage('students')">
+                    <span class="icon">👥</span>
+                    <span>Students</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showPage('books')">
+                    <span class="icon">📚</span>
+                    <span>Books</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showPage('genres')">
+                    <span class="icon">🏷️</span>
+                    <span>Genres</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showPage('borrow')">
+                    <span class="icon">📤</span>
+                    <span>Borrow Records</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showPage('settings')">
+                    <span class="icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>LMS Dashboard</h1>
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search books, students or ISBN...">
+                        <button class="search-btn" type="button" aria-label="Search">🔍</button>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <button class="btn btn-primary" id="add-new-btn" type="button" hidden>+ Add New</button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-wrapper">
+                <!-- Main Area -->
+                <div class="content-main">
+                    <!-- Dashboard Page -->
+                    <div id="dashboard-page" class="page active">
+                        <!-- Stats Cards -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">👥</div>
+                                <div class="stat-info">
+                                    <div class="stat-change">↑ 12%</div>
+                                    <h3>Total Students</h3>
+                                    <p class="stat-value" id="total-students">0</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">📚</div>
+                                <div class="stat-info">
+                                    <h3>Total Books</h3>
+                                    <p class="stat-value" id="total-books">0</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">📤</div>
+                                <div class="stat-info">
+                                    <h3>Active Borrowings</h3>
+                                    <p class="stat-value" id="active-borrowings">0</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">↩️</div>
+                                <div class="stat-info">
+                                    <h3>Returned Today</h3>
+                                    <p class="stat-value" id="returned-today">0</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="quick-actions">
+                            <h3>Librarian Quick Actions</h3>
+                            <div class="action-buttons">
+                                <button class="action-btn primary" onclick="openAddStudent()">👥 Add Student</button>
+                                <button class="action-btn secondary" onclick="openIssueBook()">📤 Issue Book</button>
+                                <button class="action-btn success" onclick="openReturnBook()">↩️ Return Book</button>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="recent-activity">
+                            <div class="activity-header">
+                                <h3>Recent Borrow Activity</h3>
+                                <a href="#" onclick="showPage('borrow')" class="view-all">View All</a>
+                            </div>
+                            <table class="activity-table">
+                                <thead>
+                                    <tr>
+                                        <th>BOOK TITLE</th>
+                                        <th>STUDENT NAME</th>
+                                        <th>DATE BORROWED</th>
+                                        <th>STATUS</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="activity-tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Students Page -->
+                    <div id="students-page" class="page">
+                        <div class="page-header">
+                            <h2>Students Management</h2>
+                            <button class="btn btn-primary" onclick="openAddStudent()">+ Add Student</button>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Age</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="students-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Books Page -->
+                    <div id="books-page" class="page">
+                        <div class="page-header">
+                            <h2>Books Management</h2>
+                            <button class="btn btn-primary" onclick="openAddBook()">+ Add Book</button>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Author</th>
+                                        <th>ISBN</th>
+                                        <th>Genre</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="books-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Genres Page -->
+                    <div id="genres-page" class="page">
+                        <div class="page-header">
+                            <h2>Genres Management</h2>
+                            <button class="btn btn-primary" onclick="openAddGenre()">+ Add Genre</button>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr><th>ID</th><th>Name</th><th>Actions</th></tr>
+                                </thead>
+                                <tbody id="genres-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Borrow Records Page -->
+                    <div id="borrow-page" class="page">
+                        <div class="page-header">
+                            <h2>Borrow Records</h2>
+                            <button class="btn btn-primary" onclick="openIssuePage()">+ New Borrowing</button>
+                        </div>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Student</th>
+                                        <th>Book</th>
+                                        <th>Borrow Date</th>
+                                        <th>Return Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="borrow-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Settings Page -->
+                    <div id="settings-page" class="page">
+                        <div class="page-header">
+                            <h2>Settings</h2>
+                        </div>
+                        <div class="settings-content">
+                            <p>Settings page under development</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

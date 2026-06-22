@@ -32,7 +32,12 @@ public class BookService {
         book.setBookName(updateBook.getBookName());
         book.setAuthor(updateBook.getAuthor());
         book.setIsbn(updateBook.getIsbn());
+        book.setGenre(updateBook.getGenre());
         bookRepositories.save(book);
+    }
+
+    public List<Book> getBookByGenre(Integer id){
+        return bookRepositories.findBookByGenreId(id);
     }
     public List<Book> getBook(){
         return bookRepositories.findAll();

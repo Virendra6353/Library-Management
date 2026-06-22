@@ -26,12 +26,20 @@ public class Book{
     @Column(nullable = false)
     private String isbn;
 
+
+//    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "Genre_id",nullable = false)
+    private Genre genre;
+
+
     public Book() {
     }
 
-    public Book(Integer id, String bookName, String author, String isbn) {
+    public Book(Integer id, String bookName, String author, Genre genre,String isbn) {
         this.id = id;
         this.bookName = bookName;
+        this.genre = genre;
         this.author = author;
         this.isbn = isbn;
     }
@@ -54,6 +62,14 @@ public class Book{
 
     public String getAuthor() {
         return author;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     public void setAuthor(String author) {
