@@ -209,3 +209,39 @@ Create an executable JAR with:
 ./mvnw clean package
 java -jar target/Library-0.0.1-SNAPSHOT.jar
 ```
+## 🔮 Future Enhancements
+
+- Spring Security Authentication
+- Role-Based Access Control
+- Fine Management System
+- Email Notifications
+- Book Reservation System
+- PDF/Excel Report Export
+- Analytics Dashboard
+- Barcode Integration
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push your branch
+5. Open a Pull Request
+
+---
+
+## 👨‍💻 Author
+
+**Virendra**
+
+Built as a learning project to explore:
+- Spring Boot
+- Spring Data JPA
+- PostgreSQL
+- Full-stack Java development
+
+⭐ Star the repository if you found it useful!
